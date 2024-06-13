@@ -30,11 +30,14 @@ RSpec.describe 'map pattern' do
     expect(capitalized_family).to eq(expected)
   end
 
-  xit 'test 3' do
+  it 'test 3' do
     numbers = [1, 2, 3, 4, 5]
-    doubles = []
-    numbers.each do |number|
-      # Your Code Here
+    # doubles = []
+    # numbers.each do |number|
+    #   doubles.push(number * 2)
+    # end
+    doubles = numbers.map do |number|
+      number * 2
     end
     expect(doubles).to eq([2, 4, 6, 8, 10])
   end
