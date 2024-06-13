@@ -9,7 +9,7 @@ RSpec.describe 'map pattern' do
     expect(capitalized_names).to eq(["Alice", "Bob", "Charlie"])
   end
 
-  xit 'test 2' do
+  it 'test 2' do
     family = {
       mother: "alice",
       father: "bob",
@@ -19,6 +19,9 @@ RSpec.describe 'map pattern' do
     family.each do |relationship, name|
       capitalized_family[relationship] = name.capitalize
     end
+    # family.map do |relationship, name|
+    #   capitalized_family[relationship] = name.capitalize
+    # end
     expected = {
       mother: "Alice",
       father: "Bob",
