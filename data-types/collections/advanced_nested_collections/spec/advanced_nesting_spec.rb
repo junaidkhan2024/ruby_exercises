@@ -21,58 +21,100 @@ RSpec.describe 'Advanced Nested Collections' do
     expect(employees).to eq(expected)
   end
 
-  xit 'test 2' do
+  it 'test 2' do
     # Find the ingredients for pancakes
-    pancake_ingredients = _____
+    pancake_ingredients = []
+     
+    stores.each do |k, v|
+      v[:dishes].each do |dish|
+        if dish[:name] == 'Pancakes'
+          pancake_ingredients = dish[:ingredients]
+        end
+      end
+    end
+
 
     expected = ["Flour", "Eggs", "Milk", "Syrup"]
     expect(pancake_ingredients).to eq(expected)
   end
 
-  xit 'test 3' do
+  it 'test 3' do
     # Find the price of risotto
-    risotto_price = ____
+    risotto_price = 0
+
+     stores.each do |k, v|
+      v[:dishes].each do |d| 
+        if d[:name] == "Risotto"
+         risotto_price = d[:price]
+        end
+      
+      end
+    end
 
     expect(risotto_price).to eq(12)
   end
 
-  xit 'test 4' do
+  it 'test 4' do
     # Find the ingredients for a Big Mac
-    big_mac_ingredients = ____
+    big_mac_ingredients = []
+    
+    stores.each do |k, v|
+      v[:dishes].each do |d|
+        if d[:name] == "Big Mac"
+          big_mac_ingredients = d[:ingredients]
+        end
+      end
+    end
 
     expected = ['Bun','Hamburger','Ketchup','pickles']
     expect(big_mac_ingredients).to eq(expected)
   end
 
-  xit 'test 5' do
+  it 'test 5' do
     # Find a list of restaurants
-    store_names = ____
-
+    store_names = []
+    stores.each do |k, v|
+      store_names.push(k)
+    end
     expected = [:olive_garden, :dennys, :macdonalds]
     expect(store_names).to eq(expected)
   end
 
-  xit 'test 6' do
+  it 'test 6' do
     # Find dishes names for Olive Garden
-    dishes_names = ____
-
+    dishes_names = []
+    stores.each do |k, v|
+      if k == :olive_garden 
+        v[:dishes].each do |d|
+          dishes_names.push d[:name]
+        end
+      end
+    end
     expect(dishes_names).to eq(['Risotto', 'Steak'])
   end
 
-  xit 'test 7' do
+  it 'test 7' do
     # Return a list of employees across
     # all restaurants
-    employee_names = ____
-
+    employee_names = []
+    stores.each do |k,v|
+      employee_names.push v[:employees]
+    end
+    employee_names.flatten!
     expected = ["Jeff", "Zach", "Samantha", "Bob", "Sue", "James", "Alvin", "Simon", "Theodore"]
     expect(employee_names).to eq(expected)
   end
 
-  xit 'test 8' do
+  it 'test 8' do
     # Return a list of all ingredients
     # across all restaurants
-    ingredients = ____
-
+    ingredients = []
+    stores.each do |k,v|
+      v[:dishes].each do |i|
+        ingredients << i[:ingredients]
+      end
+    end
+    ingredients.flatten!
     expected = [
       "Rice",
       "Cheese",
@@ -96,17 +138,32 @@ RSpec.describe 'Advanced Nested Collections' do
     expect(ingredients).to eq(expected)
   end
 
-  xit 'test 9' do
+  it 'test 9' do
     # Return the full menu price for Olive Garden
-    full_menu_price = ____
+    full_menu_price = 0
+    stores.each do |k, v|
+      if k == :olive_garden
+          v[:dishes].each do |p|
+            full_menu_price = full_menu_price + p[:price]
+          end
+      end
+    end
 
     expect(full_menu_price).to eq(27)
   end
 
-  xit 'test 10' do
+  it 'test 10' do
     # Return the full menu for Olive Garden
 
-    olive_garden_menu = _____
+    olive_garden_menu = {}
+
+    stores.each do |k, v|
+      if k == :olive_garden
+        v[:dishes].each do |n|
+          olive_garden_menu[n[:name]] = n
+        end
+      end
+    end
     
     expected = {
       "Risotto" => {
@@ -123,9 +180,15 @@ RSpec.describe 'Advanced Nested Collections' do
     expect(olive_garden_menu).to eq(expected)
   end
 
-  xit 'test 11' do
+  it 'test 11' do
     # Return a full menu across all restaurants
-    full_menu = ____
+    full_menu = {}
+    
+    stores.each do |k, v|
+        v[:dishes].each do |n|
+          full_menu[n[:name]] = n
+        end
+    end
 
     expected = {
       "Risotto" => {
