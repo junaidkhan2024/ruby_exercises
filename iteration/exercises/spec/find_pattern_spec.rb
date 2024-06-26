@@ -9,6 +9,9 @@ RSpec.describe 'find pattern' do
         break
       end
     end
+    # younger_than_thirty = ages.find do |age|
+    #   age < 30
+    # end
     expect(younger_than_thirty).to eq(29)
   end
 
