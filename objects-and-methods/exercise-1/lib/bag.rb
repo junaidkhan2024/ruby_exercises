@@ -1,19 +1,15 @@
 class Bag
-
+    attr_reader :candies
     def initialize
         @candies = []
     end
 
     def empty?
-        @candies.length == 0
+        @candies.empty?
     end
     
     def count
-       @candies.length
-    end
-
-    def candies
-        @candies
+       @candies.count
     end
 
     def <<(candy)
@@ -21,7 +17,6 @@ class Bag
     end
 
     def contains?(candy_name)
-        result = @candies.select {|c| c.type == candy_name}
-        result.length >= 1
+        @candies.any? {|c| c.type == candy_name}
     end
 end

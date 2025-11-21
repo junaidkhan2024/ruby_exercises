@@ -14,23 +14,23 @@ class TrickOrTreater
     end
 
     def empty?
-        @candies.length == 0
+        bag.empty?
     end
 
     def has_candy?
-        @candies.count > 0
+        bag.count > 0
     end
 
     def <<(candy)
-        @candies.push(candy)
+        bag.push(candy)
     end
 
     def candy_count
-        @candies.length
+        bag.count
     end
 
     def eat
-        @candies.pop
+        bag.pop
     end
 
 end
